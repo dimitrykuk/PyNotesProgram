@@ -1,6 +1,6 @@
 import json
 
-class FileRead:
+class Reader:
     def __init__(self) -> None:
         pass
 
@@ -23,3 +23,15 @@ class FileRead:
                 print('Title: ' + n['Title'])
                 print('Body: ' + n['Body'])
                 print('Time: ' + n['Time'] + "\n")
+    
+    def readNote(self, notes: dict) -> None:
+        keys = list(notes.keys())
+        id = input("Введите идентификатор заметки: ")
+        if id in keys:
+            print("\nЗаметка №" + id)
+            for n in notes[id]:
+                print('Title: ' + n['Title'])
+                print('Body: ' + n['Body'])
+                print('Time: ' + n['Time'] + "\n")
+        else:
+            print("\033[31m", "Введен несуществующий идентификатор! ", "\033[37m")

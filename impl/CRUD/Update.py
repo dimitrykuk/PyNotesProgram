@@ -22,13 +22,16 @@ class UpdateNote:
                 Body = inputBody
             
             if inputTitle != "" or inputBody != "":
+                del notes[noteKey]
                 notes[noteKey] = []
                 notes[noteKey].append({
                     'Title' : Title,
                     'Body' : Body,
                     'Time': datetime.datetime.now().strftime("%c")
                 })
-                print("\032[31m","\nЗаметка успешно изменена!\n", "\033[37m")
+                print("\033[32m","\nЗаметка успешно изменена!\n", "\033[37m")
+            else:
+                print("\033[31m","\nПользоватеь не ввел изменений!\n", "\033[37m")
                 
         except KeyError:
             print("\033[31m", "Ошибка: Введен несуществующий идентификатор! \n", "\033[37m")

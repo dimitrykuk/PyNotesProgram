@@ -22,6 +22,7 @@ class CreateNote:
                     move = int(move)
                     
                     if move == 1:
+                        del notes[note.getId()]
                         notes[note.getId()] = []
                         notes[note.getId()].append({
                         'Title': note.getTitle(),

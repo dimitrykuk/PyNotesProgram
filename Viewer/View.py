@@ -14,7 +14,7 @@ from impl.CRUD.Create import CreateNote as Create
 from impl.CRUD.Save import SaveAll as SaveAll
 from impl.CRUD.Update import UpdateNote as Update
 from impl.CRUD.Delete import DeleteNote as Delete
-from impl.CRUD.FileRead import FileRead as ReadFile
+from impl.CRUD.Reader import Reader as Reader
 
 
 # Заметки
@@ -27,7 +27,7 @@ class View:
 
         flag = True
         notes = dict()
-        fileRead = ReadFile()
+        fileRead = Reader()
         notes = fileRead.readFile()
 
         while (flag == True):
@@ -36,8 +36,9 @@ class View:
               "2. Удалить заметку\n"
               "3. Изменить заметку\n"
               "4. Показать все заметки\n"
-              "5. Сохранить заметки в файл\n"
-              "6. Выйти из заметчика\n")
+              "5. Показать заметку\n"
+              "6. Сохранить заметки в файл\n"
+              "7. Выйти из заметчика\n")
             
             command = input("Введите номер команды: ")
             if command.isdigit():
@@ -60,17 +61,23 @@ class View:
                         print("\033[31m", "Пока нет ни одной заметки! \n", "\033[37m")
                 elif (command == 4):
                     if len(notes) != 0:
-                        readAll = ReadFile()
+                        readAll = Reader()
                         readAll.readAllNotes(notes)
                     else:
                         print("\033[31m", "Пока нет ни одной заметки! \n","\033[37m")
                 elif (command == 5):
                     if len(notes) != 0:
+                        readAll = Reader()
+                        readAll.readNote(notes)
+                    else:
+                        print("\033[31m", "Пока нет ни одной заметки! \n","\033[37m")
+                elif (command == 6):
+                    if len(notes) != 0:
                         saveAll = SaveAll()
                         saveAll.saveToFile(notes)
                     else:
                         print("\033[31m","Пока нет ни одной заметки! \n","\033[37m")
-                elif (command == 6):
+                elif (command == 7):
                     print("\033[34m", "Всего доброго!", "\033[37m")
                     flag = False
                 else:
